@@ -7,7 +7,9 @@ ui <- fluidPage(
   theme = bslib::bs_theme(bootswatch = 'flatly'),
   h2('Liyab First Pay Dashboard'),
   h4('This dashboard displays self-reported data about Filipino workers\' first pay, as collated by RISE for Youth Philippines (formerly Liyab)'),
-  h4('To contribute to this dataset,',  a('click here.', href = 'https://forms.gle/YYaZ9R6k6NhXZBqj7')),
+  h4('To contribute to this dataset,',  a('click here.', href = 'https://forms.gle/YYaZ9R6k6NhXZBqj7'),
+     'Note that data must be manually updated, so new entries will not be immediately shown.'),
+  h6('Data last updated on June 20, 2022.'),
   title = 'Liyab First Pay Dashboard',
   tabsetPanel(
     tabPanel('Placeholder'),
