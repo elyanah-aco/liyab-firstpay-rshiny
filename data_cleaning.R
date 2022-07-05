@@ -13,8 +13,8 @@ library(stringdist)
 ## Load datasets
 ######################
 
-liyab_raw <- read.csv('data/liyab_raw.csv', skip = 2, header = T)
-php_inflation <- read.csv('data/php_inflation.csv', header = T)
+liyab_raw <- read.csv('raw_data/liyab_raw.csv', skip = 2, header = T)
+php_inflation <- read.csv('raw_data/php_inflation.csv', header = T)
 colnames(liyab_raw) <- c('timestamp', 'year_of_first_job',
                          'industry_raw', 'role', 'monthly_salary_unadjusted',
                          'school_graduated_raw', 'sex_raw', 
@@ -232,13 +232,16 @@ liyab_raw <- liyab_raw |>
 ## Years
 liyab_raw <- liyab_raw |>
   mutate(year_of_first_job = ifelse(year_of_first_job == 208, 2008, 
-                                    ifelse(year_of_first_job == 209, 2009, year_of_first_job))) |>
+                                    ifelse(year_of_first_job == 209, 2009, 
+                                           ifelse(year_of_first_job == 2027, 2017,
+                                                  ifelse(year_of_first_job == 2108, 2018, year_of_first_job))))) |>
   mutate(year_of_first_job = ifelse(str_length(year_of_first_job) == 2, 
                                     2000 + year_of_first_job, year_of_first_job))
 
 ## Final data cleaning (to remove entries with drastic, obvious and unfixable errors)
 liyab_raw <- liyab_raw |>
-  filter(year_of_first_job != 2 | year_of_first_job != 18000) |>
+  filter(year_of_first_job != 2) |>
+  filter(year_of_first_job != 18000) |>
   filter(monthly_salary_unadjusted != 13) 
 
 ##################################
@@ -264,4 +267,4 @@ liyab_raw <- liyab_raw |>
 ## Save datasets
 ######################
 
-liyab_cleaned <- write.csv(liyab_raw, 'data/liyab_cleaned.csv', row.names = FALSE)
+write.csv(liyab_raw, 'shiny_app/liyab_cleaned.csv', row.names = FALSE)
