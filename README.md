@@ -9,6 +9,5 @@ install.packages('bslib')
 install.packages('shiny')
 install.packages('tidyverse')
 ```
-
 ## How to Use
 Download all files using Code > Download ZIP. Once unzipped, run *app.R*. 
