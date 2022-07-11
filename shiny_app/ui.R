@@ -11,7 +11,7 @@ ui <- fluidPage(
      as collated by RISE for Youth Philippines (formerly Liyab)'),
   h4('To contribute to this dataset,',  a('click here.', href = 'https://forms.gle/YYaZ9R6k6NhXZBqj7'),
      'Note that data must be manually updated, so new entries will not be immediately shown.'),
-  h6('Data last updated on June 20, 2022.'),
+  h6('Data last updated on July 11, 2022.'),
   br(),
   tabsetPanel(
     tabPanel('By industry',
@@ -22,11 +22,21 @@ ui <- fluidPage(
                             h4('Industry'),
                             selectInput('industry', '',
                                         choices = industry_choices,
-                                        width = '75%')),
+                                        width = '75%'),
+                            sliderInput('industry_date_slider', 'Date range',
+                                        min = min_year,
+                                        max = max_year,
+                                        sep = '', 
+                                        value = c(min_year, max_year),
+                                        step = 1,
+                                        width = '85%'),
+                            checkboxInput('industry_incl_inflation', 'Adjust salaries to inflation',
+                                          value = FALSE)),
                mainPanel(width = 9,
                          fluidRow(column(8, plotOutput('top_schools_count_barplot')),
                                   column(4, plotOutput('offer_nego_pieplot'))),
-                         fluidRow(column(8, plotOutput('top_schools_salary_barplot'))))
+                         br(),
+                         fluidRow(column(12, plotOutput('top_schools_salary_barplot'))))
              )),
     
     
