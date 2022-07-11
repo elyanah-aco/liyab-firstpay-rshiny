@@ -1,4 +1,6 @@
-library(shiny)
-library(bslib)
+
+##################################
+## Run app
+##################################
 
 runApp('shiny_app')
