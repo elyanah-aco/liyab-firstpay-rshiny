@@ -224,7 +224,7 @@ liyab_raw <- liyab_raw |>
 ## Sex
 liyab_raw <- liyab_raw |>
   mutate(sex = ifelse(sex_raw == 'M' | grepl('Male|Mqle|Man', sex_raw),
-                           'Male', 'Not specified/Unclear')) |>
+                           'Male', 'Unspecified')) |>
   mutate(sex = ifelse(sex_raw == 'F' | grepl ('Fe|Frmale|Wom', sex_raw),
                        'Female', sex)) |> 
   select(-sex_raw)
